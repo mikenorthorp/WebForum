@@ -16,7 +16,7 @@ class SetUpTables extends Migration {
 		Schema::create('users', function($table)
 		{
 			// Set up user table with id, username, password, and email.
-			$table->increments('user_id');
+			$table->increments('id');
 			$table->string('username', 50);
 			$table->string('password', 255);
 			$table->string('email', 255);
