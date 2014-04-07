@@ -11,7 +11,8 @@
 |
 */
 
-// For login routes followed tutorial and modified it to my needs http://laravelbook.com/laravel-user-authentication/
+// For login routes used parts of login tutorial found here http://laravelbook.com/laravel-user-authentication/
+// and modified it. Learned how to use the filters and stuff as well.
 
 // Load the login page call the guest filter before to check if user already logged in
 Route::get('/', array('as' => 'home', function () { 

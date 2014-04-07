@@ -7,7 +7,7 @@
 
     <!-- See if there was error from filters -->
     @if (Session::has('flash_error'))
-        <div id="flash_error">{{ Session::get('flash_error') }}</div>
+        <div class="flash_error alert alert-danger">{{ Session::get('flash_error') }}</div>
     @endif
 
     <!-- Set up a login post form -->

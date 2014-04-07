@@ -1,16 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!doctype html>
 <html>
 <head>
-    <title>Laravel Authentication Demo</title>
+    <meta charset="UTF-8">
+    <title>Forum Application</title>
     <!-- Load in the css -->
     {{ HTML::style('/css/bootstrap.css') }}
     {{ HTML::style('/css/bootstrap-theme.css') }}
 </head>
 <body>
-    <div id="container">
-        <div id="nav">
-            <ul>
+    <div class="container">
+        <div class="nav">
+            <ul class="nav nav-pills">
                 @if(Auth::check())
                     <li><?php echo link_to_route('member_area', 'Home');?></li>
                     <li><?php echo link_to_route('logout', 'Logout ' . Auth::user()->username);?></li>
@@ -23,7 +23,7 @@
 
         <!-- check for flash notification message from filters.php -->
         @if(Session::has('flash_notice'))
-            <div id="flash_notice">{{ Session::get('flash_notice') }}</div>
+            <div class="flash_notice alert alert-info">{{ Session::get('flash_notice') }}</div>
         @endif
 
         @yield('content')
