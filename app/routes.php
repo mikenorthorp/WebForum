@@ -13,12 +13,12 @@
 
 // For login routes followed tutorial and modified it to my needs http://laravelbook.com/laravel-user-authentication/
 
-// Load the login page
+// Load the login page call the guest filter before to check if user already logged in
 Route::get('/', array('as' => 'home', function () { 
 	return View::make('login');
 }))->before('guest');
 
-// Load the login page
+// Load the login page, call the guest filter before to check if user already logged in
 Route::get('login', array('as' => 'login', function () {
 	 return View::make('login');
 }))->before('guest');
@@ -44,7 +44,7 @@ Route::post('login', function () {
     }
 });
 
-// Logout the user
+// Logout the user but check the auth filter before to see if user can see page
 Route::get('logout', array('as' => 'logout', function () { 
 	// Call the logout method
 	Auth::logout();
@@ -55,6 +55,7 @@ Route::get('logout', array('as' => 'logout', function () {
 }))->before('auth');
 
 // Route for the member area which shows the main page with forum topics
+// but check to make sure user is authenticated with the filter
 Route::get('member_area', array('as' => 'member_area', function () { 
 	 return View::make('member_area');
 }))->before('auth');
