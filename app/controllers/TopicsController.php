@@ -73,19 +73,32 @@ class TopicsController extends BaseController {
 		return View::make('view_topic', array('topics' => $topics, 'replies' => $replies, 'users' => $users));
 	}
 
-	// This allows deletion of a forum
-	public function destroy($topic_id)
+	// This allows deletion of a forum and all the topics inside it
+	public function destroy()
 	{
 		// Check to make sure it is admin to delete
 		if(Auth::user()->id == 1) {
-			// Delete code 
+			// get the id of the topic from the form input
+			$topic_id = Input::get('topic_id');
+			// Cannot delete initial topic so display notice
+			if($topic_id == 1) {
+				return Redirect::route('topics.index')
+	            	->with('flash_error', 'Cannot delete initial topic.');
+			} else { // Delete if not initial topic
+				// Delete any replies that have the topic id
+				DB::table('replies')->where('topic_id', '=', $topic_id)->delete();
 
+				// Delete the topic with the id passed in
+				Topics::find($topic_id)->delete();
+
+				// Go back to member area
+				return Redirect::route('topics.index')
+			        ->with('flash_notice', 'Deleted topic sucessfully!');
+			}
 		} else {
-			// display notice saying user cant delete
+			// display notice saying user cant delete (user shouldnt get here unless they spoof request)
+			return Redirect::route('topics.index')
+		        ->with('flash_error', 'You do not have permission to delete anything!');
 		}
-		// Go back to member area
-		return View::make('member_area');
 	}
-
-
 }

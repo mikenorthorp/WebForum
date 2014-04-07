@@ -26,7 +26,7 @@
     </p>
 
     <!-- Submit button-->
-    <p>{{ Form::submit('Create New Forum') }}</p>
+    <p>{{ Form::submit('Click Me!'); }}</p>
 
     <!-- Close the form -->
     {{ Form::close() }}
