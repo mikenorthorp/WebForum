@@ -26,24 +26,43 @@ Route::get('register', array('as' => 'register', function () {
 
 // Send user info to server and create a new user if name not taken
 Route::post('register', function () {
-	// Get the user information
-	$user = array(
-        'username' => Input::get('username'),
-        'password' => Input::get('password'),
-        'email'    => Input::get('email')
-    );
-        
-    // Try to authorize user
-    if (Auth::attempt($user)) {
-    	// Redirect and display a notice
+	// Make a rule to make sure username doesnt exist in the username column of users table
+	$rules = array('username' => 'unique:users,username');
+
+	 // Get the value from the form to pass into validation function
+	$input['username'] = Input::get('username');
+
+	// Set up validator to check DB with the rule set and the input of username
+	$validator = Validator::make($input, $rules);
+
+	// If the validator fails redirect to register page and display an error
+	if ($validator->fails()) {
+		return Redirect::route('register')
+            ->with('flash_error', 'That username is already taken, please try again or login.');
+	}
+	// Register a new user, authenticate them 
+	else {
+		// Create the user
+		Eloquent::unguard();
+		User::create(array(
+	        'username' => Input::get('username'),
+	        'password' => Hash::make(Input::get('password')),
+	        'email' => Input::get('email')
+        ));
+
+        // Get the user information
+       	$user = array(
+	        'username' => Input::get('username'),
+	        'password' => Input::get('password')
+	    );
+
+		// Authenticate the user (will be sucessful because we just created user)
+		Auth::attempt($user);
+
+		// Redirect and display a notice to tell them it worked
         return Redirect::route('member_area')
-            ->with('flash_notice', 'You have been logged in as ' . Auth::user()->username);
-    } else {
-    	// Redirect to the login route if auth fails
-        return Redirect::route('login')
-            ->with('flash_error', 'Incorrect username or password, please try again..')
-            ->withInput();
-    }
+            ->with('flash_notice', 'You have created and logged in as ' . Auth::user()->username);
+	}
 });
 
 // Load the login page, call the guest filter before to check if user already logged in
