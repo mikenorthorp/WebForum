@@ -60,10 +60,9 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-		// Redirects to home if they try and login and are already logged in, which then directs to
-		// Member only area later
+		// Redirects to member area if they try and login and are already logged in
         if (Auth::check()) {
-        	return Redirect::route('member_area')
+        	return Redirect::route('topics.index')
                 ->with('flash_notice', 'You have already logged in!');
         }            
 });

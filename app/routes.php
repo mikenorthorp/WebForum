@@ -74,7 +74,7 @@ Route::post('register', function () {
 		Auth::attempt($user);
 
 		// Redirect and display a notice to tell them it worked
-        return Redirect::route('member_area')
+        return Redirect::route('topics.index')
             ->with('flash_notice', 'You have created and logged in as ' . Auth::user()->username);
 	}
 });
@@ -95,7 +95,7 @@ Route::post('login', function () {
     // Try to authorize user
     if (Auth::attempt($user)) {
     	// Redirect and display a notice
-        return Redirect::route('member_area')
+        return Redirect::route('topics.index')
             ->with('flash_notice', 'You have been logged in as ' . Auth::user()->username);
     } else {
     	// Redirect to the login route if auth fails
@@ -115,11 +115,8 @@ Route::get('logout', array('as' => 'logout', function () {
         ->with('flash_notice', 'You have been logged out.');
 }))->before('auth');
 
-// Route for the member area which shows the main page with forum topics
-// but check to make sure user is authenticated with the filter
-Route::get('member_area', array('as' => 'member_area', function () { 
-	 return View::make('member_area');
-}))->before('auth');
-
-// Define routes for topics and posts
-Route::resource('topics', 'TopicsController', array('only' => array('index', 'create', 'store', 'show')));
+// Define routes for topics an make sure user is authenticated before any of the stuff
+// wrapped in a route group
+Route::group(array('before' => 'auth'), function() {
+	Route::resource('topics', 'TopicsController', array('only' => array('index', 'create', 'store', 'show', 'destroy')));
+});

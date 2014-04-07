@@ -12,13 +12,13 @@
         <div class="nav">
             <ul class="nav nav-pills">
                 @if(Auth::check())
-                    <li>{{ link_to_route('member_area', 'Home') }}</li>
+                    <li>{{ link_to_route('topics.index', 'View Forums') }}</li>
+                    <li>{{ link_to_route('topics.create', 'Create Forum') }}</li>
                     <li>{{ link_to_route('register', 'Register') }} </li>
                     <li>{{ link_to_route('logout', 'Logout ' . Auth::user()->username) }} </li>
                 @else
-                    <li>{{ link_to_route('home', 'Home') }} </li>
+                    <li>{{ link_to_route('home', 'Home/Login') }} </li>
                     <li>{{ link_to_route('register', 'Register') }} </li>
-                    <li>{{ link_to_route('login', 'Login') }} </li>
                 @endif
             </ul>
         </div><!-- end nav -->
