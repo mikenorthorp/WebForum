@@ -25,4 +25,4 @@ http://laravelbook.com/laravel-user-authentication/
 http://wiki.laravel.io/Laravel_4_Auth_pitfalls
 http://laravel.com/docs/security
 http://scotch.io/tutorials/simple-and-easy-laravel-routing
-
+http://stackoverflow.com/questions/17799148/how-to-check-if-a-user-email-already-exist
