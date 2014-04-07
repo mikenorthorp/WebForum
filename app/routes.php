@@ -20,6 +20,33 @@ Route::get('/', array('as' => 'home', function () {
 }))->before('guest');
 
 // Load the login page, call the guest filter before to check if user already logged in
+Route::get('register', array('as' => 'register', function () {
+	 return View::make('register');
+}));
+
+// Send user info to server and create a new user if name not taken
+Route::post('register', function () {
+	// Get the user information
+	$user = array(
+        'username' => Input::get('username'),
+        'password' => Input::get('password'),
+        'email'    => Input::get('email')
+    );
+        
+    // Try to authorize user
+    if (Auth::attempt($user)) {
+    	// Redirect and display a notice
+        return Redirect::route('member_area')
+            ->with('flash_notice', 'You have been logged in as ' . Auth::user()->username);
+    } else {
+    	// Redirect to the login route if auth fails
+        return Redirect::route('login')
+            ->with('flash_error', 'Incorrect username or password, please try again..')
+            ->withInput();
+    }
+});
+
+// Load the login page, call the guest filter before to check if user already logged in
 Route::get('login', array('as' => 'login', function () {
 	 return View::make('login');
 }))->before('guest');
