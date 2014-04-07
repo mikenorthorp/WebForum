@@ -11,7 +11,7 @@
 |
 */
 
-// For login routes used parts of login tutorial found here http://laravelbook.com/laravel-user-authentication/
+// For basic login routes used parts of login tutorial found here http://laravelbook.com/laravel-user-authentication/
 // and modified it. Learned how to use the filters and stuff as well.
 
 // Load the login page call the guest filter before to check if user already logged in
@@ -33,17 +33,31 @@ Route::post('register', function () {
 	$input['username'] = Input::get('username');
 
 	// Set up validator to check DB with the rule set and the input of username
-	$validator = Validator::make($input, $rules);
+	$userValidator = Validator::make($input, $rules);
+
+	// Make a rule to make sure email doesnt exist in the email column of users table
+	$rules = array('email' => 'unique:users,email');
+
+	 // Get the value from the form to pass into validation function
+	$input['email'] = Input::get('email');
+
+	// Set up validator to check DB with the rule set and the input of username
+	$emailValidator = Validator::make($input, $rules);
 
 	// If the validator fails redirect to register page and display an error
-	if ($validator->fails()) {
+	if ($userValidator->fails()) {
 		return Redirect::route('register')
             ->with('flash_error', 'That username is already taken, please try again or login.');
+	} else if ($emailValidator->fails()) {
+		return Redirect::route('register')
+            ->with('flash_error', 'That email is already taken, please try again or login.');
 	}
 	// Register a new user, authenticate them 
 	else {
-		// Create the user
+		// Ungaurd to create a user properly.. hacky.
 		Eloquent::unguard();
+
+		// Create the user
 		User::create(array(
 	        'username' => Input::get('username'),
 	        'password' => Hash::make(Input::get('password')),
@@ -108,3 +122,4 @@ Route::get('member_area', array('as' => 'member_area', function () {
 }))->before('auth');
 
 // Define routes for topics and posts
+Route::resource('topics', 'TopicsController', array('only' => array('index', 'create', 'store', 'show')));
