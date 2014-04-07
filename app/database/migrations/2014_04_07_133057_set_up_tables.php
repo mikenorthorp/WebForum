@@ -27,7 +27,7 @@ class SetUpTables extends Migration {
 		Schema::create('topics', function($table)
 		{
 			// Set up topics table with id, topic name, and description
-			$table->increments('topic_id');
+			$table->increments('id');
 			$table->string('topic_name', 255);
 			$table->string('topic_desc', 255);
 			$table->timestamps();
@@ -39,7 +39,7 @@ class SetUpTables extends Migration {
 			// Add a reply id, a topic id for the topic, and a 
 			// created by id to link to user. Also set up timestamps 
 			// columns
-			$table->increments('reply_id');
+			$table->increments('id');
 			$table->string('reply_content', 255);
 			$table->bigInteger('topic_id');
 			$table->bigInteger('created_by');

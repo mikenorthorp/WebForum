@@ -8,8 +8,11 @@ class TopicsController extends BaseController {
 	// What to do on a basic get request show all forums
 	public function index()
 	{
+		// Store all the topic rows into a variable
+		$topics = Topics::all();
 		// Call the member area view to show all forums
-		return View::make('member_area');
+		// pass int the forums variable
+		return View::make('member_area', array('topics' => $topics));
 	}
 
 	// What do show on the create page
@@ -56,7 +59,18 @@ class TopicsController extends BaseController {
 	// This shows the individual forum with all posts linked to the forum
 	public function show($topic_id)
 	{
-		return View::make('member_area');
+		// Get the forum with the ID passed in
+		$topics = Topics::find($topic_id);
+
+		// Get all users to link to posts
+		$users = User::all();
+
+		// Get all replies accoiated with this forum and pass them into the view
+		// Select all replies where topic_id = topic id of the topic selected
+		$replies = DB::table('replies')->where('topic_id', '=',  $topics->id)->get();
+
+		// Go to the view topic view
+		return View::make('view_topic', array('topics' => $topics, 'replies' => $replies, 'users' => $users));
 	}
 
 	// This allows deletion of a forum
@@ -65,7 +79,7 @@ class TopicsController extends BaseController {
 		// Check to make sure it is admin to delete
 		if(Auth::user()->id == 1) {
 			// Delete code 
-			
+
 		} else {
 			// display notice saying user cant delete
 		}
