@@ -48,6 +48,7 @@ class TopicsTableSeeder extends Seeder {
     {
         DB::table('topics')->delete();
 
+        // Create initial topic and description
         Topics::create(array(
         	'topic_name' => 'Has Science Gone Too Far?',
         	'topic_desc' => 'Discuss why science is doing bad things..',
@@ -62,7 +63,7 @@ class RepliesTableSeeder extends Seeder {
     {
         DB::table('replies')->delete();
 
-        // Create an initial post
+        // Create an initial post and link to user id 1 and topic 1
         Replies::create(array(
         	'reply_content' => 'I think it hasnt gone far enough!',
         	'topic_id' => 1,
