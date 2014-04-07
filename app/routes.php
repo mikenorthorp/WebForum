@@ -118,5 +118,8 @@ Route::get('logout', array('as' => 'logout', function () {
 // Define routes for topics an make sure user is authenticated before any of the stuff
 // wrapped in a route group
 Route::group(array('before' => 'auth'), function() {
+	// Create all methods for topics
 	Route::resource('topics', 'TopicsController', array('only' => array('index', 'create', 'store', 'show', 'destroy')));
+	// Create all methods for reply (only delete and saving)
+	Route::resource('replies', 'RepliesController', array('only' => array('store', 'destroy')));
 });
