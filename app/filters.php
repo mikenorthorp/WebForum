@@ -35,7 +35,10 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::guest('login');
+	if (Auth::guest()) {
+        return Redirect::route('login')
+            ->with('flash_error', 'You are not allowed to view this page, please login!');
+	}
 });
 
 
@@ -57,7 +60,12 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to('/');
+		// Redirects to home if they try and login and are already logged in, which then directs to
+		// Member only area later
+        if (Auth::check()) {
+        	return Redirect::route('member_area')
+                ->with('flash_notice', 'You have already logged in!');
+        }            
 });
 
 /*
