@@ -22,3 +22,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 Citations
 http://laravelbook.com/laravel-user-authentication/
+http://wiki.laravel.io/Laravel_4_Auth_pitfalls
+http://laravel.com/docs/security
+http://scotch.io/tutorials/simple-and-easy-laravel-routing
+
