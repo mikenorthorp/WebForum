@@ -1,5 +1,6 @@
 <?php
 
+// Handles requests for replies
 class RepliesController extends BaseController {
 
 	// This saves a reply 

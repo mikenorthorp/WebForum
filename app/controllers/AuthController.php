@@ -1,5 +1,6 @@
 <?php
 
+// Handles requests for logging in and out and registering users
 class AuthController extends BaseController {
 
 	// This does the home redirect for /
