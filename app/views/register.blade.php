@@ -15,24 +15,24 @@
 
     <!-- Username -->
     <p>
-        {{ Form::label('username', 'Username', array('class' => 'register')) }} <br/>
+        {{ Form::label('username', 'Username', array('class' => 'label label-info')) }} <br/>
         {{ Form::text('username'); }}
     </p>
 
     <!-- Password -->
     <p>
-        {{ Form::label('password', 'Password', array('class' => 'register')) }} <br/>
+        {{ Form::label('password', 'Password', array('class' => 'label label-info')) }} <br/>
         {{ Form::password('password') }}
     </p>
 
     <!-- Email -->
     <p>
-        {{ Form::label('email', 'Email', array('class' => 'register')) }} <br/>
+        {{ Form::label('email', 'Email', array('class' => 'label label-info')) }} <br/>
         {{ Form::text('email'); }}
     </p>
 
     <!-- Submit button-->
-    <p>{{ Form::submit('Register User') }}</p>
+    <p>{{ Form::submit('Register User', array('class' => 'btn btn-primary')) }}</p>
 
     <!-- Close the form -->
     {{ Form::close() }}

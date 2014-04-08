@@ -24,7 +24,7 @@
 					 <!-- Pass in a hidden field with topic id -->
 					 {{ Form::hidden('user_id', $user->id) }}
 					 <!-- Create a delete button -->
-					 {{ Form::submit('Delete') }}
+					 {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
 					 <!-- Close the forum -->
 					 {{ Form::close() }}
 				</td>

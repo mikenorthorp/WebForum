@@ -5,12 +5,12 @@
   <p>Your user id is: {{ Auth::user()->id }}</p>
 
   <div class="container">
-  	<table class="table">
-	  	<!-- Topic name and description -->
-	  	<h2> {{ $topics->topic_name }} </h2>
-	  	<h4> {{ $topics->topic_desc }} <h3>
-	  	</br>
+  	<!-- Topic name and description -->
+  	<div class="panel panel-default">
+  	<div class="panel-heading"> {{ $topics->topic_name }} </div>
+  	<div class="panel-heading"> {{ $topics->topic_desc }} </div>
 
+  	<table class="table">
 	  	<!-- Topic headers -->
 	  	<tr>
 	  		<th> Reply Content </th>
@@ -41,7 +41,7 @@
 					 <!-- Pass in a hidden field with reply id -->
 				 	{{ Form::hidden('reply_id', $reply->id) }}
 				 	<!-- Create a delete button -->
-				 	{{ Form::submit('Delete') }}
+				 	{{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
 				 	<!-- Close the forum -->
 					{{ Form::close() }}
 					</td>
@@ -56,7 +56,7 @@
 
     <!-- Reply Content -->
     <p>
-        {{ Form::label('reply_content', 'Reply Here', array('class' => 'reply')) }} <br/>
+        {{ Form::label('reply_content', 'Reply Here', array('class' => 'label label-info')) }} <br/>
         {{ Form::textarea('reply_content'); }}
     </p>
 
@@ -71,10 +71,12 @@
     </p>
 
     <!-- Submit button-->
-    <p>{{ Form::submit('Reply'); }}</p>
+    <p>{{ Form::submit('Reply', array('class' => 'btn btn-primary')); }}</p>
 
     <!-- Close the form -->
     {{ Form::close() }}
+
+    </div>
   </div>
 		
 @stop

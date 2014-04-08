@@ -3,7 +3,7 @@
 
 <!-- Label section for content -->
 @section('content')
-    <h1>Create Forum</h1>
+    <h1>Create Topic</h1>
 
     <!-- See if there was error from filters -->
     @if (Session::has('flash_error'))
@@ -15,18 +15,18 @@
 
     <!-- Topic name -->
     <p>
-        {{ Form::label('topic_name', 'New Forum Name', array('class' => 'create_forum')) }} <br/>
+        {{ Form::label('topic_name', 'New Topic Name', array('class' => 'label label-info')) }} <br/>
         {{ Form::text('topic_name'); }}
     </p>
 
      <!-- Topic desc -->
     <p>
-        {{ Form::label('topic_desc', 'New Forum Description', array('class' => 'create_forum')) }} <br/>
+        {{ Form::label('topic_desc', 'New Topic Description', array('class' => 'label label-info')) }} <br/>
         {{ Form::text('topic_desc'); }}
     </p>
 
     <!-- Submit button-->
-    <p>{{ Form::submit('Click Me!'); }}</p>
+    <p>{{ Form::submit('Create Topic', array('class' => 'btn btn-primary')); }}</p>
 
     <!-- Close the form -->
     {{ Form::close() }}

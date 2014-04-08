@@ -15,18 +15,18 @@
 
     <!-- Username -->
     <p>
-        {{ Form::label('username', 'Username', array('class' => 'login')) }} <br/>
+        {{ Form::label('username', 'Username', array('class' => 'label label-info')) }} <br/>
         {{ Form::text('username'); }}
     </p>
 
     <!-- Password -->
     <p>
-        {{ Form::label('password', 'Password', array('class' => 'login')) }} <br/>
+        {{ Form::label('password', 'Password', array('class' => 'label label-info')) }} <br/>
         {{ Form::password('password') }}
     </p>
 
     <!-- Submit button-->
-    <p>{{ Form::submit('Login') }}</p>
+    <p>{{ Form::submit('Login', array('class' => 'btn btn-primary')) }}</p>
 
     <!-- Close the form -->
     {{ Form::close() }}
