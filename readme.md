@@ -1,28 +1,47 @@
-## Laravel PHP Framework
+README
+======
 
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/version.png)](https://packagist.org/packages/laravel/framework) [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.png)](https://packagist.org/packages/laravel/framework) [![Build Status](https://travis-ci.org/laravel/framework.png)](https://travis-ci.org/laravel/framework)
+README and code base best viewed on [Github](https://github.com/mikenorthorp/WebForum)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+This is an assignment for my Server Side Scripting class INFX2670 Assignment 5
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+It is a simple web forum using restful practices and Larvel for a PHP framework. It uses database migrations and seeding to set up initial users and settings. It also uses bootstrap for some simple design. It follows REST metholdies to create, post, and delete things, as well as access replies and forums. The blade template is used for the views. This project also follows MVC practices. Enjoy!
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Requirements
+------------
 
-## Official Documentation
+This program requires `php` and `apache` to be installed on the server you are running this on. As well as settings below.
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+Installation
+------------
+* Note - Could not get working on Dal Web Server because I couldnt change settings that I could locally... steps listed below *
+1. Put all of the project in a folder
+2. Make sure app/storage is writable (755 I believe)
+3. Set up the config/database.php file to use the correct host, database and password. (currently uses dev settings)
+4. Ensure modrewrite is enabled
+5. Run `php artisan migrate` to set up database tables
+6. Run `php artisan db:seed` to set up database default values
+7. Login with default user/pass `admin/admin`
 
-### Contributing To Laravel
+Making the Website Do Things
+----------------------------
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
+1. Login with above user/pass
+2. Navigate through
+3. Register more users
+4. Delete and create posts and users and forums
+5. Play around with it
 
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
 
 Citations
-http://laravelbook.com/laravel-user-authentication/
-http://wiki.laravel.io/Laravel_4_Auth_pitfalls
-http://laravel.com/docs/security
-http://scotch.io/tutorials/simple-and-easy-laravel-routing
-http://stackoverflow.com/questions/17799148/how-to-check-if-a-user-email-already-exist
+=========
+Used many stack overflow posts, and bit of help from classmate Salman for ideas on how to delete which is cited in the code.
+
+And the links below 
+
+
+[http://laravelbook.com/laravel-user-authentication/](http://laravelbook.com/laravel-user-authentication/)
+[http://wiki.laravel.io/Laravel_4_Auth_pitfalls](http://wiki.laravel.io/Laravel_4_Auth_pitfalls)
+[http://laravel.com/docs/security](http://laravel.com/docs/security)
+[http://scotch.io/tutorials/simple-and-easy-laravel-routing](http://scotch.io/tutorials/simple-and-easy-laravel-routing)
+[http://stackoverflow.com/questions/17799148/how-to-check-if-a-user-email-already-exist](http://stackoverflow.com/questions/17799148/how-to-check-if-a-user-email-already-exist)
